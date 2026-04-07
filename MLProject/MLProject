@@ -1,0 +1,13 @@
+name: Titanic ML Pipeline
+
+conda_env: conda.yaml
+
+entry_points:
+  main:
+    command: "python modelling.py"
+  
+  train:
+    command: "python modelling_tuning.py"
+    
+  serve:
+    command: "mlflow models serve -m runs:/{run_id}/model --port 5000"
