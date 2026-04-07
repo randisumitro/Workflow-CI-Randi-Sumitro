@@ -40,7 +40,8 @@ jobs:
         cd MLProject
         mlflow run . --experiment-name "Titanic-CI-Pipeline"
       env:
-        MLFLOW_TRACKING_URI: https://dagshub.com/Randi Sumitro/titanic-mlflow.mlflow
+        MLFLOW_TRACKING_URI: https://dagshub.com/randisumitro/MLflow-Randi-Sumitro.mlflow
+        DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
 
     - name: Build Docker image
       run: |
@@ -56,7 +57,8 @@ jobs:
           mlflow models build-docker -m "model" -n "titanic-model:latest" || echo "Model not found, skipping Docker build"
         fi
       env:
-        MLFLOW_TRACKING_URI: https://dagshub.com/Randi Sumitro/titanic-mlflow.mlflow
+        MLFLOW_TRACKING_URI: https://dagshub.com/randisumitro/MLflow-Randi-Sumitro.mlflow
+        DAGSHUB_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
 
     - name: Log in to Docker Hub
       uses: docker/login-action@v3
